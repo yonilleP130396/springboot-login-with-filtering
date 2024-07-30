@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Leaflet Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Load Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    /* Ensure the map container fills the entire page */
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <form action="/logout" method="get">
+    <button type="submit">Logout</button>
+  </form>
+
+<!-- Create a div to hold the map -->
+<div id="map"></div>
+
+<!-- Load Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+  // Initialize the map and set its view to the Philippines' geographical coordinates and zoom level
+  var map = L.map('map').setView([12.8797, 121.7740], 6);
+
+  // Load and display a tile layer on the map
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Add a marker for Port Bonifacio, Taguig with the name "Yonille Pogi"
+  var marker = L.marker([14.5294, 121.0469]).addTo(map);
+  marker.bindPopup("<b>Yonille Pogi</b>").openPopup();
+</script>
+</body>
+</html>
